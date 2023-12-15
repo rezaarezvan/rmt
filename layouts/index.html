@@ -1,0 +1,35 @@
+{{ define "styles" }}
+<link rel="stylesheet" href="/preflight.css">
+<link rel="stylesheet" href="/main.css">
+<link rel="stylesheet" href="/home.css">
+{{ end }}
+
+{{ define "header" }}
+<header class="section">
+    {{ partial "navigation.html" . }}
+    <div id="hero" class="section">
+        <h1>{{ .Params.title }}</h1>
+        <p>{{ .Site.Params.description }}</p>
+    </div>
+</header>
+{{ end }}
+
+{{ define "main" }}
+<main class="list">
+    <div class="site-description">
+        {{- if isset .Site.Params "subtitle" -}}
+        <p>{{ .Site.Params.Subtitle | markdownify }}</p>
+        {{- end -}}
+    </div>
+    {{ $pages := where .Site.RegularPages "Section" "posts"}}
+    {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
+    {{ range $paginator.Pages }}
+    <section class="list-item">
+        <h1 class="title"><a href="{{ .RelPermalink }}">{{.Title}}</a></h1>
+        <time>{{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end
+            }}</time>
+    </section>
+    {{ end }}
+</main>
+
+{{ end }}
