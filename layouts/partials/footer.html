@@ -9,9 +9,6 @@
     <p class="footer_msg">{{ .Site.Params.footer_msg }}</p>
     {{- end -}}
 </footer>
-{{ if not .Site.IsServer }}
-{{ template "_internal/google_analytics_async.html" . }}
-{{ end }}
 
 {{- if (isset .Site.Params "social") -}}
 <script>

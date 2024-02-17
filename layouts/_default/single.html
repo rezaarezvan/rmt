@@ -1,76 +1,34 @@
-{{ define "title" }}
-{{ .Title }} &ndash; {{ .Site.Title }}
-{{ end }}
-
-{{ define "styles" }}
-<link rel="stylesheet" href="/preflight.css">
-<link rel="stylesheet" href="/main.css">
-<link rel="stylesheet" href="/post.css">
-{{ end }}
-
-{{ define "header" }}
-<header class="section">
-    {{ partial "navigation.html" . }}
-    <div class="section">
-        <h1>{{ .Title }}</h1>
-        <p>{{ .Description }}</p>
-    </div>
-
-    <!-- Mathjax support -->
-    {{ with .Site.Params.mathjax }}
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
-
-    <!-- inline Mathjax -->
-    <script type="text/x-mathjax-config">
-		MathJax.Hub.Config({
-			tex2jax: {
-				inlineMath: [['$','$'], ['\\(','\\)']],
-				displayMath: [['$$','$$'], ['\[','\]']],
-				processEscapes: true,
-				processEnvironments: true,
-				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-				TeX: { equationNumbers: { autoNumber: "AMS" },
-						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
-			}
-		});
-		</script>
-    {{ end }}
-
-    <!-- KaTeX support -->
-    {{ with .Site.Params.katex }}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body);"></script>
-
-    <!-- inline KaTeX -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            renderMathInElement(document.body, {
-                delimiters: [
-                    {left: "$$", right: "$$", display: true},
-                    {left: "$", right: "$", display: false}
-                ]
-            });
-        });
-    </script>
-    {{ end }}
-
-</header>
-<hr>
-{{ end }}
-
 {{ define "main" }}
 <main>
-    {{ .Content }}
-    <footer id="site-footer" class="section">
-        {{ range .Site.Menus.socials }}
-        <a href="{{ .URL }}" title="{{ .Title }}">
-            {{- .Name -}}
-        </a>
-        {{ end }}
-    </footer>
+    <article>
+        <div class="title">
+            <h1 class="title">{{ .Title }}</h1>
+            <div class="meta">Posted on {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span
+                    class="draft-label">DRAFT</span> {{ end }}</div>
+        </div>
+        {{ if isset .Params "tldr" }}
+        <div class="tldr">
+            <strong>tl;dr:</strong>
+            {{ .Params.tldr }}
+        </div>{{ end }}
+
+        <section class="body">
+            {{ .Content }}
+        </section>
+
+        <div class="post-tags">
+            {{ if ne .Type "page" }}
+            {{ if gt .Params.tags 0 }}
+            <nav class="nav tags">
+                <ul class="tags">
+                    {{ range .Params.tags }}
+                    <li><a href="{{" tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+                    {{ end }}
+                </ul>
+            </nav>
+            {{ end }}
+            {{ end }}
+        </div>
+    </article>
 </main>
 {{ end }}
