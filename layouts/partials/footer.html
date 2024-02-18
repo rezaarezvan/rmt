@@ -1,10 +1,9 @@
-<footer>
-    <div style="display:flex">
-        {{- range $index, $key := .Site.Params.Social -}}
-        <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}"><i data-feather="{{ $key.icon }}"></i></a>
-        <a class="border"></a>
-        {{- end -}}
-    </div>
+<footer id="site-footer">
+    {{ range .Site.Menus.socials }}
+    <a href="{{ .URL }}" title="{{ .Title }}">
+        {{- .Name -}}
+    </a>
+    {{ end }}
     {{- if isset .Site.Params "footer_msg" -}}
     <p class="footer_msg">{{ .Site.Params.footer_msg }}</p>
     {{- end -}}
