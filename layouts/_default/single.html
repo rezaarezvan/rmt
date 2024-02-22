@@ -2,33 +2,49 @@
 <main>
     <article>
         <div class="title">
-            <h1 class="title">{{ .Title }}</h1>
+            <h1>{{ .Title }}</h1>
             <div class="meta">Posted on {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span
-                    class="draft-label">DRAFT</span> {{ end }}</div>
+                    class="draft-label">DRAFT</span>{{ end }}</div>
         </div>
         {{ if isset .Params "tldr" }}
         <div class="tldr">
-            <strong>tl;dr:</strong>
-            {{ .Params.tldr }}
-        </div>{{ end }}
-
+            <strong>tl;dr:</strong> {{ .Params.tldr }}
+        </div>
+        {{ end }}
         <section class="body">
             {{ .Content }}
         </section>
-
-        <div class="post-tags">
-            {{ if ne .Type "page" }}
-            {{ if gt .Params.tags 0 }}
-            <nav class="nav tags">
-                <ul class="tags">
-                    {{ range .Params.tags }}
-                    <li><a href="{{" tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-                    {{ end }}
-                </ul>
-            </nav>
-            {{ end }}
-            {{ end }}
-        </div>
     </article>
+
+    <nav class="navigation"
+        style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+        {{ $currentTerm := index .Params.school 0 }}
+        {{ $filteredPosts := where (where .Site.RegularPages "Type" "school") ".Params.school" "intersect" (slice
+        $currentTerm) }}
+        {{ $sortedPosts := $filteredPosts.ByDate }}
+        {{ $currentIndex := -1 }}
+        {{ range $index, $element := $sortedPosts }}
+        {{ if eq $element.RelPermalink $.RelPermalink }}
+        {{ $currentIndex = $index }}
+        {{ end }}
+        {{ end }}
+
+        {{ if ne $currentIndex 0 }}
+        {{ with index $sortedPosts (sub $currentIndex 1) }}
+        <a class="previous" href="{{ .RelPermalink }}" title="Previous: {{ .Title }}"
+            style="flex-grow: 1; text-align: left;">&larr; Previous</a>
+        {{ end }}
+        {{ end }}
+
+        <div style="flex-grow: 2; text-align: center;">{{/* Optional: Placeholder for centering or additional content
+            */}}</div>
+
+        {{ if lt $currentIndex (sub (len $sortedPosts) 1) }}
+        {{ with index $sortedPosts (add $currentIndex 1) }}
+        <a class="next" href="{{ .RelPermalink }}" title="Next: {{ .Title }}"
+            style="flex-grow: 1; text-align: right;">Next &rarr;</a>
+        {{ end }}
+        {{ end }}
+    </nav>
 </main>
 {{ end }}

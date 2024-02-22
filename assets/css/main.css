@@ -284,13 +284,13 @@ legend {
     padding: 0;
 }
 
-ol,
-ul,
-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
+/* ol, */
+/* ul, */
+/* menu { */
+/*     list-style: none; */
+/*     margin: 0; */
+/*     padding: 0; */
+/* } */
 
 /*
 Prevent resizing textareas horizontally by default.
@@ -487,8 +487,7 @@ main>ul {
 }
 
 ol {
-    counter-reset: list;
-    position: relative;
+    counter-increment: list;
 }
 
 ol>li {
@@ -497,9 +496,6 @@ ol>li {
 
 ol>li:before {
     content: "(" counter(list) ") ";
-    counter-increment: list;
-    position: absolute;
-    left: -4ch;
 }
 
 a {
@@ -639,4 +635,8 @@ table td {
 
 table th {
     font-size: large;
+}
+
+div.title {
+    margin: 2ch 0ch;
 }
