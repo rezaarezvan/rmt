@@ -5,8 +5,6 @@
 <h1 class="page-title">All articles</h1>
 {{ end }}
 
-HÖJ
-
 <ul class="posts">
     {{- range .Data.Pages -}}
     {{- if (not (in (.Site.Params.excludedTypes | default (slice "page")) .Type)) -}}

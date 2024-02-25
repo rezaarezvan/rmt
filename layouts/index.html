@@ -5,7 +5,6 @@
 <body>
     <div class="content">
         {{ partial "head.html" . }}
-
         <main class="list">
             <div class="site-description">
                 {{- if isset .Site.Params "subtitle" -}}
@@ -25,7 +24,6 @@
         </main>
         {{ partial "footer.html" . }}
     </div>
-
 </body>
 
 </html>

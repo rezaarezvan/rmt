@@ -25,18 +25,11 @@
 
     {{- template "_internal/opengraph.html" . -}}
     {{- template "_internal/twitter_cards.html" . -}}
+
     {{ if and (isset .Site.Params "social") (.Site.Params.useCDN | default false) -}}
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     {{- else if or (isset .Site.Params "social") (eq .Site.Params.mode "toggle") -}}
     <script src="{{ .Site.BaseURL }}js/feather.min.js"></script>
-    {{ end }}
-    {{ if .Site.Params.useCDN | default false -}}
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
-    {{- else -}}
-    {{ $fontstyle := resources.Get "css/fonts.css" | fingerprint }}
-    <link href="{{ $fontstyle.Permalink }}" rel="stylesheet">
     {{ end }}
 
     {{ $style := resources.Get "css/main.css" | fingerprint }}
@@ -94,19 +87,4 @@
         });
     </script>
     {{ end }}
-
-    <!-- Custom CSS style get applied last -->
-    {{- if isset .Site.Params "customcss" }}
-    {{ range .Site.Params.customCSS }}
-    {{ $customstyle := resources.Get . | fingerprint }}
-    <link rel="stylesheet" type="text/css" href="{{ $customstyle.Permalink }}">
-    {{ end }}
-    {{- end -}}
-    {{- range .Site.Params.customJS }}
-    {{- if or (hasPrefix . "http://") (hasPrefix . "https://") }}
-    <script src="{{ . }}"></script>
-    {{- else if (hasPrefix . "<script")}} {{ .| safeHTML }} {{- else }} <script src="{{ $.Site.BaseURL }}{{ . }}">
-    </script>
-        {{- end }}
-        {{- end }}
 </head>
