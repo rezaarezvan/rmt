@@ -394,9 +394,11 @@ h6 {
     text-align: center;
 }
 
-#site-navbar {
-    display: flex;
-    justify-content: space-evenly;
+#site-navbar>span,
+#site-footer>span {
+    display: inline-block;
+    text-decoration: underline;
+    color: var(--link-color);
 }
 
 #site-navbar>a,
@@ -639,4 +641,11 @@ table th {
 
 div.title {
     margin: 2ch 0ch;
+}
+
+svg.feather {
+    max-height: 24px;
+    max-width: 24px;
+    display: inline-block;
+    transform: scale(0.75);
 }
