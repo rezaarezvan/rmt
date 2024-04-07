@@ -355,7 +355,7 @@ video {
 :root {
     --bg-color: #0f0f0f;
     --text-color: #f0f0f0;
-    --link-color: #7F83FF;
+    --link-color: #DA4453;
     --gray-accent-color: #1f1f1f;
 }
 
@@ -570,7 +570,7 @@ span.katex {
 
 code {
     background: #121212;
-    color: #7F83FF;
+    color: #DA4453;
     padding: .1em .2em;
 }
 
