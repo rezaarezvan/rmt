@@ -19,12 +19,40 @@
 5. Use the user's configured `sans` font-feature-settings by default.
 */
 
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-400-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-700-Regular.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-400-Italic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-700-Italic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
 html {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     -moz-tab-size: 4;
     tab-size: 4;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: "CommitMono", monospace;
     font-feature-settings: normal;
     overflow-y: scroll;
 }
@@ -78,8 +106,12 @@ Reset links to optimize for opt-in styling instead of opt-out.
 */
 
 a {
-    color: inherit;
+    color: rgb(0, 0, 0);
     text-decoration: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /*
@@ -361,10 +393,10 @@ video {
 }
 
 :root {
-    --bg-color: #f1f1f1;
+    --bg-color: rgb(250, 250, 250);
     --text-color: #333;
     --link-color: #0000EE;
-    --gray-accent-color: #dedede;
+    --gray-accent-color: rgb(244, 244, 245);
 }
 
 body {
@@ -394,30 +426,80 @@ h6 {
     text-align: center;
 }
 
-#site-navbar>span,
-#site-footer>span {
-    display: inline-block;
-    text-decoration: underline;
+#site-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--gray-accent-color);
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.menu-items {
+    display: flex;
+    gap: 10px;
+}
+
+#site-navbar a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+#site-navbar a:hover {
     color: var(--link-color);
 }
 
-#site-navbar>a,
-#site-footer>a {
-    display: inline-block;
-    text-decoration: underline;
-    color: var(--link-color);
+.theme-toggle {
+    cursor: pointer;
 }
 
-#site-navbar>a:before,
-#site-footer>a:before {
+#dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#site-navbar>div>a:before,
+#site-footer>div>a:before {
     display: inline-block;
     content: "[";
 }
 
-#site-navbar>a:after,
-#site-footer>a:after {
+#site-navbar>div>a:after,
+#site-footer>div>a:after {
     display: inline-block;
     content: "]";
+}
+
+
+#site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+#site-footer a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+#site-footer a:hover {
+    color: var(--link-color);
+}
+
+.footer-msg {
+    margin: 0;
+    font-size: 1em;
+    text-align: center;
 }
 
 .section {
@@ -498,11 +580,6 @@ ol>li {
 
 ol>li:before {
     content: "(" counter(list) ") ";
-}
-
-a {
-    text-decoration: underline;
-    color: var(--link-color);
 }
 
 hr {
@@ -648,4 +725,58 @@ svg.feather {
     max-width: 24px;
     display: inline-block;
     transform: scale(0.75);
+}
+
+.title-date-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.title {
+    margin: 0;
+}
+
+time {
+    font-size: 0.9em;
+    color: #666;
+}
+
+
+/* Add this CSS to your main.css */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.nav-item {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.nav-item.previous {
+    text-align: left;
+}
+
+.nav-item.next {
+    text-align: right;
+}
+
+/* Style for the links */
+.navigation a {
+    text-decoration: none;
+    color: #007BFF;
+    /* Adjust color as needed */
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+/* Optional: Hide placeholder divs if no link is present */
+.nav-item:empty {
+    display: none;
 }

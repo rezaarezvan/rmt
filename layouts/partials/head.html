@@ -1,11 +1,15 @@
 <header>
     <nav id="site-navbar">
-        {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}">{{ .Name }}</a>
-        {{ end }}
+        <div class="menu-items">
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}">{{ .Name }}</a>
+            {{ end }}
+        </div>
         {{ if eq .Site.Params.mode "toggle" -}}
-        | <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
-        <script src="{{ .Site.BaseURL }}js/themetoggle.js"></script>
+        <div class="theme-toggle">
+            <span id="dark-mode-toggle" onclick="toggleTheme()"><i data-feather="moon"></i></span>
+            <script src="{{ .Site.BaseURL }}js/themetoggle.js"></script>
+        </div>
         {{ end }}
     </nav>
 </header>

@@ -1,12 +1,14 @@
 <footer id="site-footer">
-    {{ range .Site.Menus.socials }}
-    <a href="{{ .URL }}" title="{{ .Title }}">
-        {{- .Name -}}
-    </a>
-    {{ end }}
+    <div class="social-links">
+        {{ range .Site.Menus.socials }}
+        <a href="{{ .URL }}" title="{{ .Title }}">
+            {{- .Name -}}
+        </a>
+        {{ end }}
+    </div>
     {{- if isset .Site.Params "footer_msg" -}}
-    <p class="footer_msg">{{ .Site.Params.footer_msg }}</p>
-    {{- end -}}
+    <p class="footer-msg">{{ .Site.Params.footer_msg }}</p>
+    {{- end }}
 </footer>
 
 {{- if (isset .Site.Params "social") -}}

@@ -3,8 +3,19 @@
     <article>
         <div class="title">
             <h1>{{ .Title }}</h1>
-            <div class="meta">Posted on {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span
-                    class="draft-label">DRAFT</span>{{ end }}</div>
+            {{- $pubdate := .PublishDate.Format "Jan 2, 2006" }}
+            <div class="meta">Posted on {{ $pubdate }}{{ if .Draft }} <span class="draft-label">DRAFT</span>{{ end }}
+            </div>
+
+            {{- if .Lastmod }}
+            {{- $lastmod := .Lastmod.Format "Jan 2, 2006" }}
+            {{- if ne $lastmod $pubdate }}
+            <div class="meta">
+                (Last updated: {{ $lastmod }})
+            </div>
+            {{- end }}
+            {{- end }}
+
         </div>
         {{ if isset .Params "tldr" }}
         <div class="tldr">
@@ -16,8 +27,7 @@
         </section>
     </article>
 
-    <nav class="navigation"
-        style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+    <nav class="navigation">
         {{ $currentTerm := index .Params.school 0 }}
         {{ $filteredPosts := where (where .Site.RegularPages "Type" "school") ".Params.school" "intersect" (slice
         $currentTerm) }}
@@ -29,19 +39,24 @@
         {{ end }}
         {{ end }}
 
-        {{ if ne $currentIndex 0 }}
-        {{ with index $sortedPosts (sub $currentIndex 1) }}
-        <a class="previous" href="{{ .RelPermalink }}" title="Previous: {{ .Title }}"
-            style="flex-grow: 0; text-align: left;">&larr; Previous</a>
-        {{ end }}
-        {{ end }}
+        {{ $hasPrevious := gt $currentIndex 0 }}
+        {{ $hasNext := lt $currentIndex (sub (len $sortedPosts) 1) }}
 
-        {{ if lt $currentIndex (sub (len $sortedPosts) 1) }}
-        {{ with index $sortedPosts (add $currentIndex 1) }}
-        <a class="next" href="{{ .RelPermalink }}" title="Next: {{ .Title }}"
-            style="flex-grow: 0; text-align: right;">Next &rarr;</a>
-        {{ end }}
-        {{ end }}
+        <div class="nav-item previous">
+            {{ if $hasPrevious }}
+            {{ with index $sortedPosts (sub $currentIndex 1) }}
+            <a href="{{ .RelPermalink }}" title="Previous: {{ .Title }}">&larr; Previous</a>
+            {{ end }}
+            {{ end }}
+        </div>
+
+        <div class="nav-item next">
+            {{ if $hasNext }}
+            {{ with index $sortedPosts (add $currentIndex 1) }}
+            <a href="{{ .RelPermalink }}" title="Next: {{ .Title }}">Next &rarr;</a>
+            {{ end }}
+            {{ end }}
+        </div>
     </nav>
 </main>
 {{ end }}

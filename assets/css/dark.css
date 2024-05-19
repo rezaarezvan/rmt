@@ -19,12 +19,40 @@
 5. Use the user's configured `sans` font-feature-settings by default.
 */
 
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-400-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-700-Regular.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-400-Italic.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'CommitMono';
+    src: url('/fonts/CommitMono-700-Italic.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 html {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     -moz-tab-size: 4;
     tab-size: 4;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-family: 'CommitMono', monospace;
     font-feature-settings: normal;
     overflow-y: scroll;
 }
@@ -353,10 +381,10 @@ video {
 }
 
 :root {
-    --bg-color: #0f0f0f;
+    --bg-color: rgb(9, 9, 11);
     --text-color: #f0f0f0;
-    --link-color: #DA4453;
-    --gray-accent-color: #1f1f1f;
+    --link-color: rgb(63, 63, 70);
+    --gray-accent-color: rgb(24, 24, 27);
 }
 
 body {
@@ -384,20 +412,6 @@ h6 {
 
 #site-footer {
     text-align: center;
-}
-
-#site-navbar>span,
-#site-footer>span {
-    display: inline-block;
-    text-decoration: underline;
-    color: var(--link-color);
-}
-
-#site-navbar>a,
-#site-footer>a {
-    display: inline-block;
-    text-decoration: underline;
-    color: var(--link-color);
 }
 
 #site-navbar>a:before,
@@ -490,11 +504,6 @@ ol>li {
 
 ol>li:before {
     content: "(" counter(list) ") ";
-}
-
-a {
-    text-decoration: underline;
-    color: var(--link-color);
 }
 
 hr {
