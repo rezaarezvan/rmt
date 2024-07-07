@@ -1,5 +1,5 @@
 :root {
-    --bg-color: rgb(250, 250, 250);
+    --bg-color: rgb(250, 250, 250, 0.3);
     --text-color: #333;
     --link-color: #0000EE;
     --gray-accent-color: rgb(244, 244, 245);
@@ -13,13 +13,39 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: transparent;
     color: var(--text-color);
 }
 
+.content {
+    background-color: rgba(250, 250, 250, 0.7);
+    /* Semi-transparent background */
+    /* Apply background to content instead */
+    position: relative;
+    /* Ensure content is above the canvas */
+    z-index: 1;
+}
+
+#backgroundCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150%;
+    /* Extend beyond the screen width */
+    height: 100%;
+    z-index: -1;
+}
+
+body {
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+}
+
+
 #site-navbar,
 #site-footer {
-    background-color: var(--gray-accent-color);
+    background-color: rgba(244, 244, 245, 0.9);
+    /* More opaque background */
 }
 
 #site-navbar a,
