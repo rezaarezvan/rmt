@@ -20,6 +20,9 @@ html {
 body {
     margin: 0;
     line-height: inherit;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Typography */

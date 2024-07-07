@@ -1,7 +1,6 @@
 body {
-    margin: auto;
-    padding: 0 1rem;
     max-width: 60ch;
+    margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -13,6 +12,8 @@ body {
 .content {
     width: 100%;
     overflow-x: hidden;
+    flex: 1;
+    padding: 1rem;
 }
 
 #site-navbar {
