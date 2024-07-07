@@ -1,18 +1,13 @@
 <footer id="site-footer">
     <div class="social-links">
         {{ range .Site.Menus.socials }}
-        <a href="{{ .URL }}" title="{{ .Title }}">
-            {{- .Name -}}
-        </a>
+        <a href="{{ .URL }}" title="{{ .Title }}">{{- .Name -}}</a>
         {{ end }}
     </div>
-    {{- if isset .Site.Params "footer_msg" -}}
-    <p class="footer-msg">{{ .Site.Params.footer_msg }}</p>
-    {{- end }}
+    <div class="footer-marquee">
+        <div class="footer-marquee__content">
+            <span class="footer-marquee__item">{{ .Site.Params.footer_msg }}</span>
+            <span class="footer-marquee__item">{{ .Site.Params.footer_msg }}</span>
+        </div>
+    </div>
 </footer>
-
-{{- if (isset .Site.Params "social") -}}
-<script>
-    feather.replace()
-</script>
-{{- end -}}

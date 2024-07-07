@@ -1,0 +1,118 @@
+/* Navbar components */
+#site-navbar a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+#site-navbar a:hover {
+    color: var(--link-color);
+}
+
+/* Footer components */
+.footer-marquee {
+    width: 100%;
+    overflow: hidden;
+    background: var(--gray-accent-color);
+    border-top: 1px dashed var(--border-color);
+    padding: 8px 0;
+}
+
+.footer-marquee__content {
+    display: flex;
+    width: fit-content;
+    animation: marquee 20s linear infinite;
+}
+
+.footer-marquee__item {
+    flex-shrink: 0;
+    padding: 0 1rem;
+    white-space: nowrap;
+}
+
+/* List components */
+.list-item:hover {
+    background-color: var(--gray-accent-color);
+}
+
+/* Chronological list */
+div.chrono-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+span.chrono-list-date {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.chrono-list-label {
+    flex-shrink: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 1ch;
+}
+
+/* Code blocks */
+code {
+    background: #b9b9b9;
+    color: #5317ac;
+    padding: .1em .2em;
+}
+
+pre {
+    border: 2px solid #202020;
+    border-radius: 20px;
+    line-height: 1.4;
+    overflow-x: auto;
+    padding: 1em;
+}
+
+pre code {
+    background-color: transparent;
+    color: inherit;
+    font-size: 100%;
+    padding: 0;
+}
+
+/* Images and figures */
+img {
+    margin: auto;
+    margin-top: 1ch;
+    margin-bottom: 1ch;
+    border: 2px solid #202020;
+    border-radius: 20px;
+    max-width: 100%;
+}
+
+img.pfp {
+    border: none;
+    border-radius: 0;
+}
+
+figure {
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 0;
+    max-width: 100%;
+}
+
+figure img {
+    max-height: 500px;
+}
+
+/* Tables */
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+}
+
+table th {
+    font-size: large;
+}

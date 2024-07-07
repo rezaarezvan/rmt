@@ -32,19 +32,31 @@
     <script src="{{ .Site.BaseURL }}js/feather.min.js"></script>
     {{ end }}
 
-    {{ $style := resources.Get "css/main.css" | fingerprint }}
-    {{ $lightSyntax := resources.Get "css/light_syntax.css" | fingerprint }}
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ $style.Permalink }}" />
-    <link id="lightSyntaxStyle" rel="stylesheet" type="text/css" media="screen" href="{{ $lightSyntax.Permalink }}" />
+    {{ $css := slice
+    (resources.Get "css/base.css")
+    (resources.Get "css/layout.css")
+    (resources.Get "css/components.css")
+    (resources.Get "css/utilities.css")
+    (resources.Get "css/light.css") }}
+    {{ $style := $css | resources.Concat "css/combined.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}">
+
+    {{ $lightSyntax := resources.Get "css/light_syntax.css" | minify | fingerprint }}
+    <link id="lightSyntaxStyle" rel="stylesheet" href="{{ $lightSyntax.Permalink }}"
+        integrity="{{ $lightSyntax.Data.Integrity }}">
 
     {{- if or (eq .Site.Params.mode "auto") (eq .Site.Params.mode "dark") (eq .Site.Params.mode "toggle") -}}
-    {{ $darkstyle := resources.Get "css/dark.css" | fingerprint }}
-    {{ $darkSyntax := resources.Get "css/dark_syntax.css" | fingerprint }}
-    <link id="darkModeStyle" rel="stylesheet" type="text/css" href="{{ $darkstyle.Permalink }}" {{ if eq
-        .Site.Params.mode "auto" }}media="(prefers-color-scheme: dark)" {{ end }} {{ if eq .Site.Params.mode "toggle"
-        }}disabled{{ end }} />
-    <link id="darkSyntaxStyle" rel="stylesheet" type="text/css" media="screen" href="{{ $darkSyntax.Permalink }}" />
+    {{ $darkStyle := resources.Get "css/dark.css" | minify | fingerprint }}
+    <link id="darkModeStyle" rel="stylesheet" href="{{ $darkStyle.Permalink }}"
+        integrity="{{ $darkStyle.Data.Integrity }}" {{ if eq .Site.Params.mode "auto"
+        }}media="(prefers-color-scheme: dark)" {{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }}>
+
+    {{ $darkSyntax := resources.Get "css/dark_syntax.css" | minify | fingerprint }}
+    <link id="darkSyntaxStyle" rel="stylesheet" href="{{ $darkSyntax.Permalink }}"
+        integrity="{{ $darkSyntax.Data.Integrity }}" {{ if eq .Site.Params.mode "auto"
+        }}media="(prefers-color-scheme: dark)" {{ end }} {{ if eq .Site.Params.mode "toggle" }}disabled{{ end }}>
     {{ end }}
+
     <!-- Mathjax support -->
     {{ with .Site.Params.mathjax }}
     <script type="text/javascript"

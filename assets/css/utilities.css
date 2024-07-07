@@ -1,0 +1,53 @@
+/* Hidden elements */
+[hidden] {
+    display: none;
+}
+
+/* Theme toggle */
+.theme-toggle {
+    cursor: pointer;
+}
+
+#dark-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Margin utilities */
+.section {
+    margin: 2ch 0ch;
+}
+
+/* Text utilities */
+.title {
+    margin: 0;
+}
+
+time {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* SVG utilities */
+svg {
+    max-height: 15px;
+}
+
+svg.feather {
+    max-height: 24px;
+    max-width: 24px;
+    display: inline-block;
+    transform: scale(0.75);
+}
+
+/* Animation utilities */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}

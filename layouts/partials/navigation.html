@@ -1,0 +1,31 @@
+<nav class="navigation">
+    {{ $currentTerm := index .Params.school 0 }}
+    {{ $filteredPosts := where (where .Site.RegularPages "Type" "school") ".Params.school" "intersect" (slice
+    $currentTerm) }}
+    {{ $sortedPosts := $filteredPosts.ByDate }}
+    {{ $currentIndex := -1 }}
+    {{ range $index, $element := $sortedPosts }}
+    {{ if eq $element.RelPermalink $.RelPermalink }}
+    {{ $currentIndex = $index }}
+    {{ end }}
+    {{ end }}
+
+    {{ $hasPrevious := gt $currentIndex 0 }}
+    {{ $hasNext := lt $currentIndex (sub (len $sortedPosts) 1) }}
+
+    <div class="nav-item previous">
+        {{ if $hasPrevious }}
+        {{ with index $sortedPosts (sub $currentIndex 1) }}
+        <a href="{{ .RelPermalink }}" title="Previous: {{ .Title }}">&larr; Previous</a>
+        {{ end }}
+        {{ end }}
+    </div>
+
+    <div class="nav-item next">
+        {{ if $hasNext }}
+        {{ with index $sortedPosts (add $currentIndex 1) }}
+        <a href="{{ .RelPermalink }}" title="Next: {{ .Title }}">Next &rarr;</a>
+        {{ end }}
+        {{ end }}
+    </div>
+</nav>
