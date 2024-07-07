@@ -1,7 +1,8 @@
 <footer id="site-footer">
     <div class="social-links">
         {{ range .Site.Menus.socials }}
-        <a href="{{ .URL }}" title="{{ .Title }}">{{- .Name -}}</a>
+        <a href="{{ .URL }}" title="{{ .Title }}" class="social-link"><span class="bracket">[</span>{{- .Name -}}<span
+                class="bracket">]</span></a>
         {{ end }}
     </div>
     <div class="footer-marquee">

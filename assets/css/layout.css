@@ -1,15 +1,37 @@
 body {
     margin: auto;
-    padding: 0ch 1ch;
+    padding: 0 1rem;
     max-width: 60ch;
 }
 
+@media (max-width: 768px) {
+    body {
+        padding: 0 0.5rem;
+    }
+}
+
+.content {
+    width: 100%;
+    overflow-x: hidden;
+}
 
 #site-navbar {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+    #site-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu-items {
+        margin-top: 10px;
+    }
 }
 
 #site-footer {

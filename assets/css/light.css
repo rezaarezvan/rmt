@@ -8,6 +8,8 @@
     --code-bg: #b9b9b9;
     --code-color: #5317ac;
     --katex-color: black;
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
 }
 
 body {
@@ -28,6 +30,16 @@ body {
 #site-navbar a:hover,
 #site-footer a:hover {
     color: var(--link-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
 }
 
 blockquote {
