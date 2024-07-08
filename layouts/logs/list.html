@@ -1,0 +1,7 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+<div id="log-container">Loading logs...</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ .Site.BaseURL }}js/logs.js"></script>
+{{ end }}
