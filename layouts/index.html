@@ -15,15 +15,6 @@
     </div>
 
     {{ partial "footer.html" . }}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const navbar = document.getElementById('sticky-navbar');
-            console.log('Navbar position:', window.getComputedStyle(navbar).position);
-            window.addEventListener('scroll', function () {
-                console.log('Scrolled, Navbar top:', navbar.getBoundingClientRect().top);
-            });
-        });
-    </script>
 </body>
 
 </html>
