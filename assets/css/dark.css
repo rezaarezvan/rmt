@@ -30,6 +30,10 @@ body {
     color: var(--link-color);
 }
 
+a:hover {
+    color: var(--link-color);
+}
+
 blockquote {
     background: var(--blockquote-bg);
     padding: 0.1em 1em;

@@ -1,12 +1,4 @@
 /* Navbar components */
-#site-navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-}
-
 .navbar-content {
     display: flex;
     justify-content: space-between;
@@ -51,21 +43,6 @@
     width: 18px;
     height: 18px;
     stroke: var(--text-color);
-}
-
-@media (max-width: 768px) {
-    #site-navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-links {
-        margin-top: 0.5rem;
-    }
-
-    .theme-toggle {
-        margin-top: 0.5rem;
-    }
 }
 
 #site-footer {

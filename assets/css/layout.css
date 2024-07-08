@@ -21,17 +21,21 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 0.5rem 1rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     #site-navbar {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .menu-items {
-        margin-top: 10px;
+    .navbar-links {
+        margin-top: 0.5rem;
+    }
+
+    .theme-toggle {
+        margin-top: 0.5rem;
     }
 }
 
@@ -39,14 +43,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    padding: 1rem 0;
+    margin-top: auto;
+    padding: 0.5rem 0;
     text-align: center;
-}
-
-.menu-items {
-    display: flex;
-    gap: 10px;
 }
 
 .social-links {
